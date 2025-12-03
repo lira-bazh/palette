@@ -8,18 +8,36 @@
 :root {
   --bg-color: #{$color-white};
   --font-color: #{$color-black};
+  --input-border-color: #{$color-black};
+  --input-bg: #{$color-white};
+  --btn-bg: #{$grey-2};
+  --btn-bg-hover: #{$grey-3};
+  --palette-shadow-color: #{$grey-1};
+  --palette-shadow-color-hover: #{$grey-2};
+  --icon-color: #{$color-black};
+  --icon-color-hover: #{$grey-5};
+  --navlink-bg-hover: #{$grey-2};
+  --border-color: #{$grey-3};
 }
 
 .dark-theme {
-  --bg-color: #{$color-black};
+  --bg-color: #{$grey-8};
   --font-color: #{$color-white};
+  --input-bg: #{$grey-6};
+  --btn-bg: #{$grey-5};
+  --btn-bg-hover: #{$grey-6};
+  --palette-shadow-color: #{$grey-7};
+  --palette-shadow-color-hover: #{$grey-8};
+  --icon-color: #{$color-white};
+  --icon-color-hover: #{$grey-4};
+  --navlink-bg-hover: #{$grey-7};
+  --border-color: #{$grey-3};
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--font-color);
   font-size: 16px;
-  line-height: 19.49px;
   font-weight: 400;
   font-family: "Nunito", sans-serif;
   overflow-x: hidden;

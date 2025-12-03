@@ -1,2 +1,27 @@
 $color-white: #fff;
 $color-black: #000;
+
+$grey-0: #f8f9faff;
+$grey-1: #e9ecefff;
+$grey-2: #dee2e6ff;
+$grey-3: #ced4daff;
+$grey-4: #adb5bdff;
+$grey-5: #6c757dff;
+$grey-6: #495057ff;
+$grey-7: #343a40ff;
+$grey-8: #212529ff;
+
+$header-height: 50px;
+
+$indent: 10%;
+
+@mixin total-indentation {
+  padding-left: $indent;
+  padding-right: $indent;
+}
+
+@mixin page-settings {
+  @include total-indentation;
+
+  padding-top: 20px;
+}

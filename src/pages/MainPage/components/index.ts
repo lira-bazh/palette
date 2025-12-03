@@ -1,0 +1,1 @@
+export { PaletteItem } from './PaletteItem/PaletteItem';

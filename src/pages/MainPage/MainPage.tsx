@@ -1,5 +1,15 @@
+import { PaletteItem } from "./components";
+import { useAppSelector } from '@/store';
+import styles from './MainPage.module.scss'
+
+
 export const MainPage = () => {
+  const palettes = useAppSelector(state => state.palettes.data);
+
   return (
-    <div>MainPage</div>
-  )
+    <div className={styles['main-page']}>
+      <h1>Выберите палитру</h1>
+      <div className={styles['palettes-list']}>{palettes.map(item => <PaletteItem key={item.uuid} palette={item} />)}</div>
+    </div>
+  );
 }

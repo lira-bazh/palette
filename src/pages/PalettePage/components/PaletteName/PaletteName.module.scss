@@ -1,0 +1,20 @@
+.palette-name {
+  height: 40px;
+
+  &__show-name {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px;
+
+    border-bottom: solid 1px var(--border-color);
+
+    svg {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+}

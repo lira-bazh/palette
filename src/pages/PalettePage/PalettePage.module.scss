@@ -1,0 +1,7 @@
+.palette-page {
+  @include page-settings;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

@@ -1,0 +1,15 @@
+.customButton {
+  min-width: 100px;
+  min-height: 40px;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--btn-bg);
+  font-size: 16px;
+  color: var(--font-color);
+
+  &:hover {
+    background-color: var(--btn-bg-hover);
+  }
+}

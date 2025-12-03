@@ -1,0 +1,15 @@
+.palette-viewer {
+  border-collapse: collapse;
+
+  &__header {
+    height: 60px;
+
+    th {
+      text-align: left;
+      vertical-align: middle;
+      padding: 10px;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+}

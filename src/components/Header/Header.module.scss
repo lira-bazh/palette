@@ -1,0 +1,27 @@
+.header {
+  @include total-indentation;
+
+  width: 100%;
+  height: $header-height;
+  box-shadow: 0 4px 6px -1px rgb(from #{$color-black} R G B/ 0.1), 0 2px 4px -1px rgb(from #{$color-black} R G B/ 0.06);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__link {
+    width: 100px;
+    height: 100%;
+    text-decoration: none;
+    color: var(--font-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--navlink-bg-hover);
+    }
+  }
+}
