@@ -1,11 +1,11 @@
 import type { IColor, IPalette } from "@/types";
 
-const DEFAULT_COLORS: IColor[] = ['#eeeeee', '#dddddd', '#cccccc', '#bbbbbb', '#aaaaaa'].map(
-  item => ({ hex: item }),
-);
+const DEFAULT_COLORS: string[] = ['#eeeeee', '#dddddd', '#cccccc', '#bbbbbb', '#aaaaaa']
 
 export const PalettesServices = {
-  DEFAULT_COLORS,
+  getDefaultColors(): IColor[] {
+    return DEFAULT_COLORS.map(item => ({ hex: item, uuid: crypto.randomUUID() }));
+  },
 
   hexToRgb(hex: string): string {
     const regHex = new RegExp(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
@@ -16,11 +16,11 @@ export const PalettesServices = {
       : '';
   },
 
-  savePalettes(paletes: IPalette[]) {
+  savePalettes(paletes: Record<string, IPalette>) {
     localStorage.setItem('palettes', JSON.stringify(paletes));
   },
 
-  getPalettes(): IPalette[] {
-    return JSON.parse(localStorage.getItem('palettes') || '[]');
+  getPalettes(): Record<string, IPalette> {
+    return JSON.parse(localStorage.getItem('palettes') || '{}');
   },
 };

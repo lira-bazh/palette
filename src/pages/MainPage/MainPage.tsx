@@ -9,7 +9,7 @@ export const MainPage = () => {
   return (
     <div className={styles['main-page']}>
       <h1>Выберите палитру</h1>
-      <div className={styles['palettes-list']}>{palettes.map(item => <PaletteItem key={item.uuid} palette={item} />)}</div>
+      <div className={styles['palettes-list']}>{Object.values(palettes).map(item => <PaletteItem key={item.uuid} palette={item} />)}</div>
     </div>
   );
 }

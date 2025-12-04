@@ -1,0 +1,9 @@
+.color-selector[popover] {
+  background-color: transparent;
+  border: none;
+  min-width: 350px;
+
+  position-area: left span-bottom;
+  position-try-fallbacks: left span-all;
+  translate: -10px 0;
+}

@@ -1,0 +1,63 @@
+.color-item {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid var(--border-color);
+
+  &__color {
+    width: 200px;
+  }
+
+  @mixin common-td {
+    text-align: left;
+    vertical-align: middle;
+    padding: 10px;
+  }
+
+  &__hex, &__rgb {
+    @include common-td;
+
+    width: 180px;
+  }
+
+  &__comment {
+    @include common-td;
+
+    width: 200px;
+  }
+
+  &__actions {
+    @include common-td;
+
+    width: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+
+      path {
+        stroke: var(--icon-color);
+      }
+
+      &:hover {
+        path {
+          stroke: var(--icon-color-hover);
+        }
+      }
+    }
+  }
+}

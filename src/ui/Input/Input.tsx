@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react';
+import { type FC, useState, type Ref } from 'react';
 import classNames from 'classnames';
 import styles from './Input.module.scss';
 
@@ -11,17 +11,17 @@ interface IInputProps {
   className?: string;
   type?: 'text' | 'number';
   validation?: (value: string) => string;
+  ref?: Ref<HTMLInputElement>;
 }
 
 export const Input: FC<IInputProps> = ({
   label = '',
-  name,
-  value,
   validation,
   onChange,
   onBlur,
   className,
   type = 'text',
+  ...props
 }) => {
   const [error, setError] = useState('');
 
@@ -30,10 +30,9 @@ export const Input: FC<IInputProps> = ({
       <label className={styles.customLabel}>
         {label}
         <input
-          name={name}
+          {...props}
           pattern={type == 'number' ? '[0-9]*' : undefined}
           className={classNames(styles.customInput, error && styles.invalidInput)}
-          value={value}
           onChange={e => {
             if (typeof validation === 'function') {
               setError(validation(e.target.value));

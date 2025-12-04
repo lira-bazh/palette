@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Header } from '@/components'
-import { MainPage, PalettePage } from '@/pages';
+import { MainPage, PalettePage, NewPalettePage } from '@/pages';
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/new" element={<NewPalettePage />} />
         <Route path="palette/:uuid" element={<PalettePage />} />
       </Routes>
     </BrowserRouter>
