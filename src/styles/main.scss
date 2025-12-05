@@ -12,12 +12,19 @@
   --input-bg: #{$color-white};
   --btn-bg: #{$grey-2};
   --btn-bg-hover: #{$grey-3};
-  --palette-shadow-color: #{$grey-1};
-  --palette-shadow-color-hover: #{$grey-2};
+  --palette-shadow-color: #{$grey-3};
+  --palette-shadow-color-hover: #{$grey-4};
   --icon-color: #{$color-black};
   --icon-color-hover: #{$grey-5};
   --navlink-bg-hover: #{$grey-2};
   --border-color: #{$grey-3};
+  --popover-bg: #{$grey-2};
+
+  .rcp-root {
+    --rcp-background-color: var(--popover-bg);
+    --rcp-field-input-color: #{$color-black};
+    --rcp-field-label-color: #{$color-black};
+  }
 }
 
 .dark-theme {
@@ -26,12 +33,19 @@
   --input-bg: #{$grey-6};
   --btn-bg: #{$grey-5};
   --btn-bg-hover: #{$grey-6};
-  --palette-shadow-color: #{$grey-7};
-  --palette-shadow-color-hover: #{$grey-8};
+  --palette-shadow-color: #{$grey-9};
+  --palette-shadow-color-hover: #{$grey-9};
+  --palette-item-bg: #{$grey-7};
   --icon-color: #{$color-white};
   --icon-color-hover: #{$grey-4};
   --navlink-bg-hover: #{$grey-7};
   --border-color: #{$grey-3};
+  --popover-bg: #{$grey-7};
+
+  .rcp-root {
+    --rcp-field-input-color: #{$color-white};
+    --rcp-field-label-color: #{$grey-1};
+  }
 }
 
 body {

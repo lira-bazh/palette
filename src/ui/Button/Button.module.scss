@@ -9,7 +9,11 @@
   font-size: 16px;
   color: var(--font-color);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--btn-bg-hover);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }

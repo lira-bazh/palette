@@ -1,0 +1,18 @@
+.add-palette {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 30%;
+  }
+
+  &:hover {
+    svg {
+      path {
+        stroke: var(--icon-color-hover);
+      }
+    }
+  }
+}

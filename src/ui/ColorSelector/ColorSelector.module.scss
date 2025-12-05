@@ -1,9 +1,9 @@
 .color-selector[popover] {
-  background-color: transparent;
-  border: none;
   min-width: 350px;
 
-  position-area: left span-bottom;
-  position-try-fallbacks: left span-all;
-  translate: -10px 0;
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 2px var(--palette-shadow-color);
+  background: var(--popover-bg);
 }

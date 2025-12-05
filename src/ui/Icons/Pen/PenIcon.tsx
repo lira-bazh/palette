@@ -1,7 +1,6 @@
 import type { FC } from "react";
-import type { IIconProps } from "@/types";
 
-export const PenIcon: FC<IIconProps> = props => {
+export const PenIcon: FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

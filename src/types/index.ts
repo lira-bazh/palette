@@ -9,10 +9,3 @@ export interface IPalette {
   name: string;
   colors: IColor[];
 }
-
-export interface IIconProps {
-  onClick?: () => void;
-  className?: string;
-  title?: string;
-  popoverTarget?: string;
-}

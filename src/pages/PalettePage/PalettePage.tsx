@@ -1,13 +1,23 @@
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { PaletteName, PaletteViewer } from '@/components';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { changeColor, changePaletteName } from '@/store/palettes';
+import { Button } from '@/ui';
+import {
+  addColor,
+  changeColor,
+  changeColorComment,
+  changePaletteName,
+  removeColor,
+  moveColor,
+  removePalette,
+} from '@/store/palettes';
+import { ROUTES } from '@/constants';
 import styles from './PalettePage.module.scss';
-
 
 export const PalettePage = () => {
   let params = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const palette = useAppSelector(state => params.uuid ? state.palettes.data[params.uuid] : undefined);
 
   return (
@@ -25,8 +35,29 @@ export const PalettePage = () => {
           <div>
             <PaletteViewer
               colors={palette.colors}
-              onChange={(uuidColor, newColor) => {
+              changeColor={(uuidColor, newColor) => {
                 dispatch(changeColor({ uuidPalette: palette.uuid, uuidColor, newColor }));
+              }}
+              addColor={color => {
+                dispatch(addColor({ uuidPalette: palette.uuid, color }));
+              }}
+              removeColor={uuidColor => {
+                dispatch(removeColor({ uuidPalette: palette.uuid, uuidColor }));
+              }}
+              changeComment={(uuidColor, comment) => {
+                dispatch(changeColorComment({ uuidPalette: palette.uuid, uuidColor, comment }));
+              }}
+              moveColor={(upperUuid, movedUuid) => {
+                dispatch(moveColor({ uuidPalette: palette.uuid, upperUuid, movedUuid }));
+              }}
+            />
+          </div>
+          <div>
+            <Button
+              text="Удалить палитру"
+              onClick={() => {
+                dispatch(removePalette(palette.uuid));
+                navigate(ROUTES.main());
               }}
             />
           </div>

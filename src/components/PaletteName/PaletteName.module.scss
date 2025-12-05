@@ -1,15 +1,18 @@
 .palette-name {
   height: 40px;
+  font-size: 130%;
 
   &__show-name {
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
+    gap: 10px;
 
     padding: 8px;
 
     border-bottom: solid 1px var(--border-color);
+    font-weight: bold;
 
     svg {
       width: 20px;

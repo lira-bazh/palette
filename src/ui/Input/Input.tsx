@@ -7,11 +7,11 @@ interface IInputProps {
   name: string;
   value: string;
   onChange: (value: string) => void;
-  onBlur?: (value: string) => void;
+  onBlur?: (value?: string) => void;
   className?: string;
-  type?: 'text' | 'number';
   validation?: (value: string) => string;
   ref?: Ref<HTMLInputElement>;
+  placeholder?: string;
 }
 
 export const Input: FC<IInputProps> = ({
@@ -20,7 +20,6 @@ export const Input: FC<IInputProps> = ({
   onChange,
   onBlur,
   className,
-  type = 'text',
   ...props
 }) => {
   const [error, setError] = useState('');
@@ -31,7 +30,6 @@ export const Input: FC<IInputProps> = ({
         {label}
         <input
           {...props}
-          pattern={type == 'number' ? '[0-9]*' : undefined}
           className={classNames(styles.customInput, error && styles.invalidInput)}
           onChange={e => {
             if (typeof validation === 'function') {
@@ -40,9 +38,14 @@ export const Input: FC<IInputProps> = ({
 
             onChange(e.target.value);
           }}
-          onBlur={e => {
+          onBlur={() => {
             if (typeof onBlur === 'function') {
-              onBlur(e.target.value);
+              onBlur();
+            }
+          }}
+          onKeyUp={(e) => {
+            if (e.key == 'Enter' && typeof onBlur === 'function') {
+              onBlur();
             }
           }}
         />

@@ -1,16 +1,7 @@
 .palette-item {
-  width: 25%;
-  height: 200px;
-  border-radius: 5px;
-  box-shadow: 0 2px 3px var(--palette-shadow-color);
   overflow: hidden;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
-
-  &:hover {
-    box-shadow: 0 4px 6px var(--palette-shadow-color-hover);
-  }
 
   &__colors {
     height: 65%;

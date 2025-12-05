@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { Link } from 'react-router';
+import { ROUTES } from "@/constants";
 import type { IPalette } from "@/types";
 import styles from './PaletteItem.module.scss'
 
@@ -9,7 +10,7 @@ interface IPaletteItemProps {
 
 export const PaletteItem: FC<IPaletteItemProps> = ({ palette }) => {
   return (
-    <Link to={`/palette/${palette.uuid}`} className={styles['palette-item']}>
+    <Link to={ROUTES.palette(palette.uuid)} className={styles['palette-item']}>
       <div
         className={styles['palette-item__colors']}
         style={{ gridTemplateColumns: `repeat(${palette.colors.length}, 1fr)` }}>

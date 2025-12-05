@@ -1,15 +1,31 @@
 .palette-viewer {
-  border-collapse: collapse;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+
+  &__table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+  }
 
   &__header {
     height: 60px;
 
     th {
+      height: 100%;
       text-align: left;
       vertical-align: middle;
       padding: 10px;
-      border-top: 1px solid var(--border-color);
       border-bottom: 1px solid var(--border-color);
     }
+  }
+
+  [popover] {
+    position-area: right span-top;
+    position-try-fallbacks: right span-all;
+    translate: 10px 0;
   }
 }

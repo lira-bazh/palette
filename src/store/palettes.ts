@@ -38,7 +38,57 @@ export const palettesSlice = createSlice({
       );
       PalettesServices.savePalettes(state.data);
     },
+    changeColorComment: (
+      state: WritableDraft<IPalettesSlice>,
+      action: PayloadAction<{ uuidPalette: string; uuidColor: string; comment: string }>,
+    ) => {
+      const { uuidPalette, uuidColor, comment } = action.payload;
+      state.data[uuidPalette].colors = state.data[uuidPalette].colors.map(item =>
+        item.uuid === uuidColor ? { ...item, comment } : item,
+      );
+      PalettesServices.savePalettes(state.data);
+    },
+    addColor: (
+      state: WritableDraft<IPalettesSlice>,
+      action: PayloadAction<{ uuidPalette: string; color: string }>,
+    ) => {
+      const { uuidPalette, color } = action.payload;
+      state.data[uuidPalette].colors.push({ uuid: crypto.randomUUID(), hex: color });
+      PalettesServices.savePalettes(state.data);
+    },
+    removeColor: (
+      state: WritableDraft<IPalettesSlice>,
+      action: PayloadAction<{ uuidPalette: string; uuidColor: string }>,
+    ) => {
+      const { uuidPalette, uuidColor } = action.payload;
+      state.data[uuidPalette].colors = state.data[uuidPalette].colors.filter(
+        item => item.uuid !== uuidColor,
+      );
+      PalettesServices.savePalettes(state.data);
+    },
+    moveColor: (
+      state: WritableDraft<IPalettesSlice>,
+      action: PayloadAction<{ uuidPalette: string; upperUuid: string; movedUuid: string }>,
+    ) => {
+      const { uuidPalette, upperUuid, movedUuid } = action.payload;
+      PalettesServices.moveColors(state.data[uuidPalette].colors, upperUuid, movedUuid);
+      PalettesServices.savePalettes(state.data);
+    },
+    removePalette: (state: WritableDraft<IPalettesSlice>, action: PayloadAction<string>) => {
+      const uuid = action.payload;
+      delete state.data[uuid];
+      PalettesServices.savePalettes(state.data);
+    }
   },
 });
 
-export const { addPalette, changePaletteName, changeColor } = palettesSlice.actions;
+export const {
+  addPalette,
+  changePaletteName,
+  changeColor,
+  addColor,
+  removeColor,
+  changeColorComment,
+  moveColor,
+  removePalette,
+} = palettesSlice.actions;
