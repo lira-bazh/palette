@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router';
 import { PaletteName, PaletteViewer } from '@/components';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { Button } from '@/ui';
+import { Button, ColorSelector } from '@/ui';
 import {
   addColor,
   changeColor,
@@ -38,9 +38,6 @@ export const PalettePage = () => {
               changeColor={(uuidColor, newColor) => {
                 dispatch(changeColor({ uuidPalette: palette.uuid, uuidColor, newColor }));
               }}
-              addColor={color => {
-                dispatch(addColor({ uuidPalette: palette.uuid, color }));
-              }}
               removeColor={uuidColor => {
                 dispatch(removeColor({ uuidPalette: palette.uuid, uuidColor }));
               }}
@@ -52,7 +49,15 @@ export const PalettePage = () => {
               }}
             />
           </div>
-          <div>
+          <div className={styles['palette-page__controls']}>
+            <ColorSelector
+              id="add-color"
+              buttonText="Добавить цвет"
+              onChange={color => {
+                dispatch(addColor({ uuidPalette: palette.uuid, color }));
+              }}
+              value=""
+            />
             <Button
               text="Удалить палитру"
               onClick={() => {

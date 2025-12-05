@@ -1,13 +1,11 @@
 import type { FC } from "react";
 import { ColorItem } from './components';
-import { ColorSelector } from '@/ui';
 import type { IColor } from '@/types';
 import styles from "./PaletteViewer.module.scss";
 
 interface IPaletteViewerProps {
   colors: IColor[];
   changeColor: (uuid: string, newColor: string) => void;
-  addColor: (color: string) => void;
   removeColor: (uuid: string) => void;
   changeComment: (uuid: string, comment: string) => void;
   moveColor: (upperUuid: string, movedUuid: string) => void;
@@ -15,7 +13,6 @@ interface IPaletteViewerProps {
 
 export const PaletteViewer: FC<IPaletteViewerProps> = ({
   colors,
-  addColor,
   ...props
 }) => {
   return (
@@ -42,12 +39,6 @@ export const PaletteViewer: FC<IPaletteViewerProps> = ({
           ))}
         </tbody>
       </table>
-      <ColorSelector
-        id="add-color"
-        buttonText="Добавить цвет"
-        onChange={color => addColor(color)}
-        value=""
-      />
     </div>
   );
 };

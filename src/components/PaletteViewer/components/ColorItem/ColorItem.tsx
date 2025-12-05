@@ -1,5 +1,5 @@
 import { type FC, useRef } from "react";
-import { ColorSelector, Input } from '@/ui';
+import { ColorSelector, Input, Tooltip } from '@/ui';
 import { PaletteIcon, PenIcon, TrashIcon, ArrowUpDownIcon } from '@/ui/Icons';
 import { useEditText } from '@/hooks/useEditText';
 import { PalettesServices } from '@/services/palettes';
@@ -14,12 +14,6 @@ interface IColorItemProps {
   changeComment: (uuid: string, comment: string) => void;
   moveColor: (upperUuid: string, movedUuid: string) => void;
 }
-
-const findParentTrTag = (node: HTMLElement | null): HTMLElement | null => {
-  if (!node) return null;
-  if (node.tagName.toLocaleLowerCase() === 'tr') return node;
-  return findParentTrTag(node.parentElement);
-};
 
 export const ColorItem: FC<IColorItemProps> = ({
   color,
@@ -38,25 +32,24 @@ export const ColorItem: FC<IColorItemProps> = ({
       className={styles['color-item']}
       onDragStart={e => {
         e.dataTransfer?.setData('text', color.uuid);
+        const colorCell = refRow.current?.childNodes[0] as HTMLElement;
+        e.dataTransfer?.setDragImage(colorCell, 100, 10);
+        e.dataTransfer.dropEffect = 'move';
       }}
       onDragOver={e => {
         e.preventDefault();
-        const row = findParentTrTag(e.target as HTMLElement);
-
-        if (row) {
-          row.classList.add('drag-over');
-        }
+        refRow.current?.classList.add('drag-over');
       }}
-      onDragLeave={e => {
-        const row = findParentTrTag(e.target as HTMLElement);
-
-        if (row) {
-          row.classList.remove('drag-over');
-        }
+      onDragLeave={() => {
+        refRow.current?.classList.remove('drag-over');
       }}
       onDrop={e => {
+        e.preventDefault();
         moveColor(color.uuid, e.dataTransfer.getData('text'));
         refRow.current?.classList.remove('drag-over');
+      }}
+      onDragEnd={() => {
+        refRow.current?.removeAttribute('draggable');
       }}>
       <td className={styles['color-item__color']} style={{ backgroundColor: color.hex }}></td>
       <td className={styles['color-item__hex']}>{color.hex}</td>
@@ -79,20 +72,31 @@ export const ColorItem: FC<IColorItemProps> = ({
       </td>
       <td className={styles['color-item__actions-wrapper']}>
         <div className={styles['color-item__actions']}>
-          <ColorSelector
-            id={`color-picker-${color.uuid}`}
-            value={color.hex}
-            onChange={newColor => changeColor(color.uuid, newColor)}
-            buttonText={<PaletteIcon />}
-          />
-          <PenIcon onClick={() => setEditCommentMode(true)} />
-          <ArrowUpDownIcon
-            className={styles['color-item__arrow']}
-            onMouseDown={() => {
-              refRow.current?.setAttribute('draggable', 'true');
-            }}
-          />
-          {showRemoveButton && <TrashIcon onClick={() => removeColor(color.uuid)} />}
+          <Tooltip id={`color-picker-tooltip-${color.uuid}`} text="Изменить цвет">
+            <ColorSelector
+              id={`color-picker-${color.uuid}`}
+              value={color.hex}
+              onChange={newColor => changeColor(color.uuid, newColor)}
+              buttonText={<PaletteIcon />}
+            />
+          </Tooltip>
+          <Tooltip id={`edit-comment-tooltip-${color.uuid}`} text="Изменить комментарий">
+            <PenIcon onClick={() => setEditCommentMode(true)} />
+          </Tooltip>
+          <Tooltip id={`edit-location-tooltip-${color.uuid}`} text="Переместить">
+            <ArrowUpDownIcon
+              className={styles['color-item__arrow']}
+              onMouseDown={() => {
+                refRow.current?.setAttribute('draggable', 'true');
+              }}
+            />
+          </Tooltip>
+
+          {showRemoveButton && (
+            <Tooltip id={`remove-color-tooltip-${color.uuid}`} text="Удалить цвет">
+              <TrashIcon onClick={() => removeColor(color.uuid)} />
+            </Tooltip>
+          )}
         </div>
       </td>
     </tr>

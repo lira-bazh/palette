@@ -1,0 +1,29 @@
+.custom-tooltip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  &[aria-describedby]:hover,
+  &[aria-describedby]:focus {
+    position: relative;
+  }
+  &[aria-describedby]:not(.disabled):hover > [role="tooltip"],
+  &[aria-describedby]:not(.disabled):focus > [role="tooltip"],
+  [role="tooltip"]:hover,
+  [role="tooltip"]:focus {
+    visibility: visible;
+  }
+
+  [role="tooltip"] {
+    visibility: hidden;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-color);
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+}

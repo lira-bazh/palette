@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { PaletteName, PaletteViewer } from '@/components';
-import { Button } from '@/ui';
+import { Button, ColorSelector, Tooltip } from '@/ui';
 import { PalettesServices } from '@/services/palettes';
 import { useAppDispatch } from '@/store';
 import { addPalette } from '@/store/palettes';
@@ -12,7 +12,7 @@ import styles from './NewPalettePage.module.scss';
 export const NewPalettePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [paletteName, setPaletteName] = useState('');
+  const [paletteName, setPaletteName] = useState('Новая палитра');
   const [paletteColors, setPaletteColors] = useState<IColor[]>(PalettesServices.getDefaultColors());
 
   return (
@@ -28,9 +28,6 @@ export const NewPalettePage = () => {
               paletteColors.map(item => (item.uuid === uuid ? { ...item, hex: newColor } : item)),
             )
           }
-          addColor={color =>
-            setPaletteColors([...paletteColors, { hex: color, uuid: crypto.randomUUID() }])
-          }
           removeColor={uuid => setPaletteColors(paletteColors.filter(item => item.uuid !== uuid))}
           changeComment={(uuid, comment) =>
             setPaletteColors(
@@ -43,7 +40,16 @@ export const NewPalettePage = () => {
           }}
         />
       </div>
-      <div>
+      <div className={styles['new-palette-page__controls']}>
+        <ColorSelector
+          id="add-color"
+          buttonText="Добавить цвет"
+          onChange={color =>
+            setPaletteColors([...paletteColors, { hex: color, uuid: crypto.randomUUID() }])
+          }
+          value=""
+        />
+        <Tooltip id="save-arror" text={!paletteName ? 'Введите название палитры' : 'Сохранить палитру'} disabled={!!paletteName}>
         <Button
           text="Сохранить палитру"
           disabled={!paletteName}
@@ -51,8 +57,8 @@ export const NewPalettePage = () => {
             dispatch(addPalette({ name: paletteName, colors: paletteColors }));
             navigate(ROUTES.main());
           }}
-          title={!paletteName ? 'Введите название палитры' : 'Сохранить палитру'}
         />
+        </Tooltip>
       </div>
     </div>
   );

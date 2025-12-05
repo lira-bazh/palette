@@ -19,6 +19,8 @@
   --navlink-bg-hover: #{$grey-2};
   --border-color: #{$grey-3};
   --popover-bg: #{$grey-2};
+  --tooltip-bg: #{$color-black};
+  --tooltip-color: #{$color-white};
 
   .rcp-root {
     --rcp-background-color: var(--popover-bg);
