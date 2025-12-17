@@ -24,15 +24,12 @@ export const PalettePage = () => {
     <div className={styles['palette-page']}>
       {palette && (
         <>
-          <div>
             <PaletteName
               name={palette?.name || ''}
               onChange={name => {
                 dispatch(changePaletteName({ uuid: palette.uuid, name }));
               }}
             />
-          </div>
-          <div>
             <PaletteViewer
               colors={palette.colors}
               changeColor={(uuidColor, newColor) => {
@@ -48,7 +45,6 @@ export const PalettePage = () => {
                 dispatch(moveColor({ uuidPalette: palette.uuid, upperUuid, movedUuid }));
               }}
             />
-          </div>
           <div className={styles['palette-page__controls']}>
             <ColorSelector
               id="add-color"
