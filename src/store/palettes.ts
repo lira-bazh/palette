@@ -34,7 +34,7 @@ export const palettesSlice = createSlice({
     ) => {
       const { uuidPalette, uuidColor, newColor } = action.payload;
       state.data[uuidPalette].colors = state.data[uuidPalette].colors.map(item =>
-        item.uuid === uuidColor ? { ...item, hex: newColor } : item,
+        item.uuid === uuidColor ? { ...item, value: newColor } : item,
       );
       PalettesServices.savePalettes(state.data);
     },
@@ -53,7 +53,7 @@ export const palettesSlice = createSlice({
       action: PayloadAction<{ uuidPalette: string; color: string }>,
     ) => {
       const { uuidPalette, color } = action.payload;
-      state.data[uuidPalette].colors.push({ uuid: crypto.randomUUID(), hex: color });
+      state.data[uuidPalette].colors.push({ uuid: crypto.randomUUID(), value: color });
       PalettesServices.savePalettes(state.data);
     },
     removeColor: (

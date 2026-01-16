@@ -3,12 +3,33 @@
 
   width: 100%;
   height: $header-height;
-  box-shadow: 0 4px 6px -1px rgb(from #{$color-black} R G B/ 0.1), 0 2px 4px -1px rgb(from #{$color-black} R G B/ 0.06);
+  border-bottom: 1px solid var(--mui-palette-divider);
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  &__right {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+  }
+
+  &__github {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      color: var(--icon-color);
+    }
+  }
 
   &__link {
     width: 100px;

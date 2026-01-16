@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { ColorItem } from './components';
-import type { IColor } from '@/types';
+import { ColorRow } from './components';
+import { EColorModel, type IColor } from '@/types';
 import styles from "./PaletteViewer.module.scss";
 
 interface IPaletteViewerProps {
@@ -21,21 +21,16 @@ export const PaletteViewer: FC<IPaletteViewerProps> = ({
         <thead className={styles['palette-viewer__header']}>
           <tr>
             <th>Цвет</th>
-            <th>HEX</th>
-            <th>RGB</th>
-            <th>HSL</th>
+            {Object.values(EColorModel).map(model => (
+              <th key={model}>{model.toLocaleUpperCase()}</th>
+            ))}
             <th>Комментарий</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {colors.map((color, index) => (
-            <ColorItem
-              {...props}
-              key={color.uuid}
-              showRemoveButton={!!index}
-              color={color}
-            />
+            <ColorRow {...props} key={color.uuid} showRemoveButton={!!index} color={color} />
           ))}
         </tbody>
       </table>

@@ -1,4 +1,5 @@
-import type { IColor, IPalette } from "@/types";
+import Color from 'color';
+import type { IColor, IPalette } from '@/types';
 
 interface IColorRgb {
   r: number;
@@ -7,11 +8,17 @@ interface IColorRgb {
   a?: number;
 }
 
-const DEFAULT_COLORS: string[] = ['#eeeeee', '#dddddd', '#cccccc', '#bbbbbb', '#aaaaaa']
+const DEFAULT_COLORS: string[] = [
+  'oklch(0.95 0 0)',
+  'oklch(0.85 0 0)',
+  'oklch(0.75 0 0)',
+  'oklch(0.65 0 0)',
+  'oklch(0.55 0 0)',
+];
 
 export const PalettesServices = {
   getDefaultColors(): IColor[] {
-    return DEFAULT_COLORS.map(item => ({ hex: item, uuid: crypto.randomUUID() }));
+    return DEFAULT_COLORS.map(item => ({ value: item, uuid: crypto.randomUUID() }));
   },
 
   normalizeRGB(num: number): number {
@@ -45,11 +52,13 @@ export const PalettesServices = {
       b: this.normalizeRGB(rgb.b),
     };
 
-    const cmin = Math.min(rgbNorm.r, rgbNorm.g, rgbNorm.b)
-    const cmax = Math.max(rgbNorm.r, rgbNorm.g, rgbNorm.b)
-    const delta = cmax - cmin
+    const cmin = Math.min(rgbNorm.r, rgbNorm.g, rgbNorm.b);
+    const cmax = Math.max(rgbNorm.r, rgbNorm.g, rgbNorm.b);
+    const delta = cmax - cmin;
 
-    let h = 0, s = 0, l = 0;
+    let h = 0,
+      s = 0,
+      l = 0;
 
     if (delta === 0) h = 0;
     else if (cmax === rgbNorm.r) h = ((rgbNorm.g - rgbNorm.b) / delta) % 6;
@@ -73,18 +82,35 @@ export const PalettesServices = {
     const movedIndex = colors.findIndex(item => item.uuid === movedUuid);
 
     colors.splice(
-        upperIndex,
-        0,
-        // удаляет и возвращает удаленный элемент
-        colors.splice(movedIndex, 1)[0],
-      );
+      upperIndex,
+      0,
+      // удаляет и возвращает удаленный элемент
+      colors.splice(movedIndex, 1)[0],
+    );
   },
 
   savePalettes(paletes: Record<string, IPalette>) {
     localStorage.setItem('palettes', JSON.stringify(paletes));
   },
 
+  hexToOklch(palettes: Record<string, IPalette>): void {
+    for (const key in palettes) {
+      // @ts-ignore
+      palettes[key].colors = palettes[key].colors.map(({ uuid, hex, value }) => {
+        return {
+          uuid,
+          // @ts-ignore
+          value: value || Color(hex).hex(),
+        };
+      });
+    }
+  },
+
   getPalettes(): Record<string, IPalette> {
-    return JSON.parse(localStorage.getItem('palettes') || '{}');
+    const palettes = JSON.parse(localStorage.getItem('palettes') || '{}');
+
+    this.hexToOklch(palettes);
+
+    return palettes;
   },
 };

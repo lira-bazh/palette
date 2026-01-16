@@ -1,22 +1,21 @@
+import { Tooltip, IconButton, useColorScheme } from '@mui/material';
 import { MoonIcon, SunIcon } from '@/ui/Icons';
-import { useAppSelector, useAppDispatch } from '@/store';
-import { changeTheme } from '@/store/theme';
 import styles from './ThemeSettings.module.scss';
-import { Tooltip } from '@/ui';
 
 export const ThemeSettings = () => {
-  const dispatch = useAppDispatch();
-  const isDarkTheme = useAppSelector(state => state.theme.isDarkTheme);
+  const { mode, setMode } = useColorScheme();
 
   const themeProps = {
     className: styles.themeBtn,
-    onClick: () => dispatch(changeTheme()),
+    onClick: () => setMode(mode === 'dark' ? 'light' : 'dark'),
     title: 'Сменить цветоую тему',
   };
 
   return (
-    <Tooltip id="theme-settings-tooltip" text={isDarkTheme ? "Переключить на светлую тему" : "Переключить на тёмную тему"}>
-      {isDarkTheme ? <SunIcon {...themeProps} /> : <MoonIcon {...themeProps} />}
+    <Tooltip title={mode === 'dark' ? 'Переключить на светлую тему' : 'Переключить на тёмную тему'}>
+      <IconButton>
+        {mode === 'dark' ? <SunIcon {...themeProps} /> : <MoonIcon {...themeProps} />}
+      </IconButton>
     </Tooltip>
   );
 }

@@ -5,3 +5,4 @@ export { TrashIcon } from './Trash/TrashIcon';
 export { PlusIcon } from './Plus/PlusIcon';
 export { PaletteIcon } from './Palette/PaletteIcon';
 export { ArrowUpDownIcon } from './ArrowUpDown/ArrowUpDownIcon';
+export { GithubIcon } from './Github/GithubIcon';

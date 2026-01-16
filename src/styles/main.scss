@@ -6,12 +6,6 @@
 }
 
 :root {
-  --bg-color: #{$color-white};
-  --font-color: #{$color-black};
-  --input-border-color: #{$color-black};
-  --input-bg: #{$color-white};
-  --btn-bg: #{$grey-2};
-  --btn-bg-hover: #{$grey-3};
   --palette-shadow-color: #{$grey-3};
   --palette-shadow-color-hover: #{$grey-4};
   --icon-color: #{$color-black};
@@ -29,12 +23,7 @@
   }
 }
 
-.dark-theme {
-  --bg-color: #{$grey-8};
-  --font-color: #{$color-white};
-  --input-bg: #{$grey-6};
-  --btn-bg: #{$grey-5};
-  --btn-bg-hover: #{$grey-6};
+.dark {
   --palette-shadow-color: #{$grey-9};
   --palette-shadow-color-hover: #{$grey-9};
   --palette-item-bg: #{$grey-7};

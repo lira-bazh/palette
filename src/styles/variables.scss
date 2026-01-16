@@ -3,18 +3,19 @@ $color-black: #000;
 
 $grey-0: #f8f9faff;
 $grey-1: #e9ecefff;
-$grey-2: #dee2e6ff;
+$grey-2: #F6F6F6ff;
 $grey-3: #ced4daff;
 $grey-4: #adb5bdff;
 $grey-5: #6c757dff;
 $grey-6: #495057ff;
-$grey-7: #343a40ff;
+$grey-7: #303030ff;
 $grey-8: #212529ff;
 $grey-9: #16181bff;
 
 $error-color: #D8474A;
 
 $header-height: 50px;
+$td-color-width: 200px;
 
 $indent: 10%;
 
@@ -26,6 +27,6 @@ $indent: 10%;
 @mixin page-settings {
   @include total-indentation;
 
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }

@@ -1,29 +1,7 @@
 .palette-name {
-  height: 40px;
-  font-size: 130%;
-
-  &__show-name {
-    height: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 10px;
-
-    padding: 8px;
-
-    border-bottom: solid 1px var(--border-color);
-    font-weight: bold;
-
-    svg {
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-
-      &:hover {
-        path {
-          stroke: var(--icon-color-hover);
-        }
-      }
-    }
+  :global(.MuiInputBase-input) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 130%;
   }
 }

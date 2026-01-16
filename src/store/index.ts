@@ -1,12 +1,10 @@
 import { useDispatch, useSelector, type TypedUseSelectorHook } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { palettesSlice } from './palettes';
-import { themeSlice } from './theme';
 
 export const store = configureStore({
   reducer: {
     palettes: palettesSlice.reducer,
-    theme: themeSlice.reducer,
   },
 });
 

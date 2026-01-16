@@ -1,4 +1,2 @@
-export { Input } from './Input/Input';
-export { Button } from './Button/Button';
 export { ColorSelector } from './ColorSelector/ColorSelector';
-export { Tooltip } from './Tooltip/Tooltip';
+export { IconButtonWithTooltip } from './IconButtonWithTooltip/IconButtonWithTooltip';

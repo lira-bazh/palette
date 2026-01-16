@@ -1,8 +1,7 @@
 import { type FC } from 'react';
-import { Input } from '@/ui';
-import { PenIcon } from '@/ui/Icons';
-import { useEditText } from '@/hooks/useEditText';
+import { TextField } from '@mui/material';
 import styles from './PaletteName.module.scss'
+
 
 interface IPaletteNameProps {
   name: string;
@@ -10,25 +9,17 @@ interface IPaletteNameProps {
 }
 
 export const PaletteName: FC<IPaletteNameProps> = ({ name, onChange}) => {
-  const [editMode, setEditMode, refInput] = useEditText();
 
   return (
     <div className={styles['palette-name']}>
-      {editMode ? (
-        <Input
-          ref={refInput}
-          name="palette_name"
-          value={name}
-          onChange={value => onChange(value)}
-          onBlur={() => setEditMode(false)}
-          placeholder="Введите название палитры"
-        />
-      ) : (
-        <div className={styles['palette-name__show-name']}>
-          {name}
-          <PenIcon onClick={() => setEditMode(true)} />
-        </div>
-      )}
+      <TextField
+        fullWidth
+        variant="standard"
+        label="Название палитры"
+        placeholder="Введите название палитры"
+        onBlur={e => onChange(e.target.value)}
+        value={name}
+      />
     </div>
   );
 };

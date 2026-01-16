@@ -1,1 +1,1 @@
-export { ColorItem } from './ColorItem/ColorItem';
+export { ColorRow } from './ColorRow/ColorRow';

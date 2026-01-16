@@ -4,15 +4,33 @@
   justify-content: center;
   align-items: center;
 
-  svg {
-    width: 30%;
+  :global(.MuiCardActionArea-root) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  &:hover {
-    svg {
-      path {
-        stroke: var(--icon-color-hover);
-      }
+  &__link {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:visited {
+      color: var(--mui-palette-text-primary); /* Фиолетовый цвет для посещенных */
     }
+
+    svg {
+      width: 30%;
+    }
+
   }
 }

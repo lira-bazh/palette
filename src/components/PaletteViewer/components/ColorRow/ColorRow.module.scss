@@ -1,40 +1,47 @@
-.color-item {
+.color-row {
   width: 100%;
   height: 60px;
   border-bottom: 1px solid var(--border-color);
 
-  &__color {
-    width: 200px;
-  }
-
-  @mixin common-td {
+  > td {
     text-align: left;
     vertical-align: middle;
     padding: 10px;
   }
 
-  &__hex {
-    @include common-td;
-
-    width: 120px;
+  & &__color {
+    width: $td-color-width;
+    text-align: right;
   }
 
-  &__rgb, &__hsl {
-    @include common-td;
+  & &__color-selector {
+    padding: 0;
+    min-width: auto;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
 
-    width: 200px;
-  }
+    svg {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
 
-  &__comment {
-    @include common-td;
+    &:hover, &:active {
+      box-shadow: none;
+      background-color: transparent;
+      border: none;
+    }
+
+    :global(.MuiTouchRipple-root) {
+      display: none;
+    }
   }
 
   & &__actions {
     &-wrapper {
-      @include common-td;
-
-      width: 150px;
-      max-width: 150px;
+      width: 80px;
+      max-width: 80px;
     }
 
     display: flex;
@@ -73,6 +80,14 @@
       &:hover {
         path {
           stroke: var(--icon-color-hover);
+        }
+      }
+
+      &.drag-n-drop-icon {
+        cursor: grab;
+
+        &:active {
+          cursor: grabbing;
         }
       }
     }

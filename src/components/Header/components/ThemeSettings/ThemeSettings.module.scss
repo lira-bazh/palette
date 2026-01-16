@@ -6,16 +6,4 @@
   path {
     fill: var(--icon-color);
   }
-
-  &:hover {
-    path {
-      fill: var(--icon-color-hover);
-    }
-  }
-
-  &:active {
-    path {
-      fill: var(--icon-color);
-    }
-  }
 }

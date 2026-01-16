@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router';
+import { ColorSelector } from '@/ui';
 import { PaletteName, PaletteViewer } from '@/components';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { Button, ColorSelector } from '@/ui';
 import {
   addColor,
   changeColor,
@@ -13,6 +13,7 @@ import {
 } from '@/store/palettes';
 import { ROUTES } from '@/constants';
 import styles from './PalettePage.module.scss';
+import { Button } from '@mui/material';
 
 export const PalettePage = () => {
   let params = useParams();
@@ -24,43 +25,44 @@ export const PalettePage = () => {
     <div className={styles['palette-page']}>
       {palette && (
         <>
-            <PaletteName
-              name={palette?.name || ''}
-              onChange={name => {
-                dispatch(changePaletteName({ uuid: palette.uuid, name }));
-              }}
-            />
-            <PaletteViewer
-              colors={palette.colors}
-              changeColor={(uuidColor, newColor) => {
-                dispatch(changeColor({ uuidPalette: palette.uuid, uuidColor, newColor }));
-              }}
-              removeColor={uuidColor => {
-                dispatch(removeColor({ uuidPalette: palette.uuid, uuidColor }));
-              }}
-              changeComment={(uuidColor, comment) => {
-                dispatch(changeColorComment({ uuidPalette: palette.uuid, uuidColor, comment }));
-              }}
-              moveColor={(upperUuid, movedUuid) => {
-                dispatch(moveColor({ uuidPalette: palette.uuid, upperUuid, movedUuid }));
-              }}
-            />
+          <PaletteName
+            name={palette?.name || ''}
+            onChange={name => {
+              dispatch(changePaletteName({ uuid: palette.uuid, name }));
+            }}
+          />
+          <PaletteViewer
+            colors={palette.colors}
+            changeColor={(uuidColor, newColor) => {
+              dispatch(changeColor({ uuidPalette: palette.uuid, uuidColor, newColor }));
+            }}
+            removeColor={uuidColor => {
+              dispatch(removeColor({ uuidPalette: palette.uuid, uuidColor }));
+            }}
+            changeComment={(uuidColor, comment) => {
+              dispatch(changeColorComment({ uuidPalette: palette.uuid, uuidColor, comment }));
+            }}
+            moveColor={(upperUuid, movedUuid) => {
+              dispatch(moveColor({ uuidPalette: palette.uuid, upperUuid, movedUuid }));
+            }}
+          />
           <div className={styles['palette-page__controls']}>
             <ColorSelector
               id="add-color"
-              buttonText="Добавить цвет"
+              className={styles['palette-page__add-color']}
+              target="Добавить цвет"
               onChange={color => {
                 dispatch(addColor({ uuidPalette: palette.uuid, color }));
               }}
-              value=""
             />
             <Button
-              text="Удалить палитру"
+              variant="contained"
               onClick={() => {
                 dispatch(removePalette(palette.uuid));
                 navigate(ROUTES.main());
-              }}
-            />
+              }}>
+              Удалить палитру
+            </Button>
           </div>
         </>
       )}
