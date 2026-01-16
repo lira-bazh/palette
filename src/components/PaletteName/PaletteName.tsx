@@ -17,7 +17,7 @@ export const PaletteName: FC<IPaletteNameProps> = ({ name, onChange}) => {
         variant="standard"
         label="Название палитры"
         placeholder="Введите название палитры"
-        onBlur={e => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         value={name}
       />
     </div>
