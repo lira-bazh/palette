@@ -9,11 +9,11 @@ interface IColorRgb {
 }
 
 const DEFAULT_COLORS: string[] = [
-  'oklch(0.95 0 0)',
-  'oklch(0.85 0 0)',
-  'oklch(0.75 0 0)',
-  'oklch(0.65 0 0)',
-  'oklch(0.55 0 0)',
+  'rgb(50,50,50)',
+  'rgb(80,80,80)',
+  'rgb(110,110,110)',
+  'rgb(150,150,150)',
+  'rgb(200,200,200)',
 ];
 
 export const PalettesServices = {
@@ -93,7 +93,7 @@ export const PalettesServices = {
     localStorage.setItem('palettes', JSON.stringify(paletes));
   },
 
-  hexToOklch(palettes: Record<string, IPalette>): void {
+  hexTorgb(palettes: Record<string, IPalette>): void {
     for (const key in palettes) {
       // @ts-ignore
       palettes[key].colors = palettes[key].colors.map(({ uuid, hex, value }) => {
@@ -109,7 +109,7 @@ export const PalettesServices = {
   getPalettes(): Record<string, IPalette> {
     const palettes = JSON.parse(localStorage.getItem('palettes') || '{}');
 
-    this.hexToOklch(palettes);
+    this.hexTorgb(palettes);
 
     return palettes;
   },
